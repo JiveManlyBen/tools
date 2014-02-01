@@ -16,7 +16,10 @@ import javax.imageio.ImageIO;
 
 public class FileTools {
 	private static final String DIRECTORY_ERROR = "The supplied directory was not valid";
-	
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+	}
 	public static List<File> getFilesInDirectory(String directoryPath) throws IOException {
 		return getFilesInDirectory(directoryPath, null);
 	}
@@ -34,6 +37,15 @@ public class FileTools {
 			}
 		}
 		return fileList;
+	}
+	public static void createDirectory(String directory) {
+		File thisDir = new File (directory);
+		if (!thisDir.exists()) {
+			File parentDir = new File (directory.substring(0, directory.lastIndexOf("/")));
+			if (!parentDir.exists())
+				createDirectory(parentDir.getAbsolutePath());
+			thisDir.mkdir();
+		}
 	}
 	public static List<File> getFoldersInDirectory(String directoryPath) {
 		File directory = new File(directoryPath);
