@@ -12,6 +12,7 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URLEncodedUtils;
@@ -94,6 +95,35 @@ public class HTTPTools {
 		try {
 			HttpPost httppost = new HttpPost(url);
 			System.out.println(String.format("%s: Executing Request - %s",  new Date(), httppost.getRequestLine()));
+			HttpResponse response = httpclient.execute(httppost);
+			System.out.println(String.format("%s: Returned Status - %s", new Date(), response.getStatusLine()));
+			ResponseHandler<String> basicRH = new BasicResponseHandler();
+			String responseString = basicRH.handleResponse(response); 
+			return responseString;
+		}
+		finally {
+			httpclient.close();
+		}
+	}
+
+	public static String post(String url, Map<String, String> params) throws ClientProtocolException, IOException {
+		RequestConfig defaultRequestConfig = RequestConfig.custom()
+			    .setSocketTimeout(timeout)
+			    .setConnectTimeout(timeout)
+			    .setConnectionRequestTimeout(timeout)
+			    .setStaleConnectionCheckEnabled(true)
+			    .build();
+		CloseableHttpClient httpclient = HttpClientBuilder.create()
+				.setDefaultRequestConfig(defaultRequestConfig)
+				.build();
+		try {
+			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
+			for(Entry<String, String> entry : params.entrySet()) {
+				nameValuePairs.add(new BasicNameValuePair(entry.getKey(), entry.getValue()));
+			}
+			HttpPost httppost = new HttpPost(url);
+			System.out.println(String.format("%s: Executing Request - %s",  new Date(), httppost.getRequestLine()));
+			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 			HttpResponse response = httpclient.execute(httppost);
 			System.out.println(String.format("%s: Returned Status - %s", new Date(), response.getStatusLine()));
 			ResponseHandler<String> basicRH = new BasicResponseHandler();
