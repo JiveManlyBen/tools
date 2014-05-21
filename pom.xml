@@ -35,11 +35,11 @@
       <artifactId>geronimo-jms_1.1_spec</artifactId>
       <version>1.0.1</version>
     </dependency>
-    <dependency>
-      <groupId>org.apache.activemq</groupId>
-      <artifactId>activemq-core</artifactId>
-      <version>5.4.2</version>
-    </dependency>
+	<dependency>
+		<groupId>org.apache.activemq</groupId>
+		<artifactId>activemq-core</artifactId>
+		<version>5.4.2</version>
+	</dependency>
   </dependencies>
   <profiles>
     <profile>
