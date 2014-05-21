@@ -41,7 +41,7 @@ public class FileTools {
 	public static void createDirectory(String directory) {
 		File thisDir = new File (directory);
 		if (!thisDir.exists()) {
-			File parentDir = new File (directory.substring(0, directory.lastIndexOf("/")));
+			File parentDir = new File (directory.substring(0, directory.lastIndexOf(File.separator)));
 			if (!parentDir.exists())
 				createDirectory(parentDir.getAbsolutePath());
 			thisDir.mkdir();
