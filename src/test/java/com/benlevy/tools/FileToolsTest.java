@@ -10,7 +10,7 @@ import org.junit.AfterClass;
 import org.junit.Test;
 
 public class FileToolsTest {
-	static final String NEW_PARENT = "src" + File.separator + "test" + File.separator + "resources";
+	static final String NEW_PARENT = "src" + File.separator + "test" + File.separator + "resources" + File.separator + "untitled folder";
 	static final String NEW_DIRECTORY = NEW_PARENT + File.separator + "New Folder";
 
     @Test
