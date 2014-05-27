@@ -40,6 +40,14 @@
 		<artifactId>activemq-core</artifactId>
 		<version>5.4.2</version>
 	</dependency>
+	<dependency>
+  <groupId>com.drewnoakes</groupId>
+  <artifactId>metadata-extractor</artifactId>
+  <version>2.6.2</version>
+  <name>metadata-extractor</name>
+  <description>Java library for reading metadata from image files.</description>
+  <url>http://code.google.com/p/metadata-extractor/</url>
+	</dependency>
   </dependencies>
   <profiles>
     <profile>
