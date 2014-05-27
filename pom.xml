@@ -41,26 +41,23 @@
 		<version>5.4.2</version>
 	</dependency>
 	<dependency>
-  <groupId>com.drewnoakes</groupId>
-  <artifactId>metadata-extractor</artifactId>
-  <version>2.6.2</version>
-  <name>metadata-extractor</name>
-  <description>Java library for reading metadata from image files.</description>
-  <url>http://code.google.com/p/metadata-extractor/</url>
+	  <groupId>com.drewnoakes</groupId>
+	  <artifactId>metadata-extractor</artifactId>
+	  <version>2.6.2</version>
 	</dependency>
   </dependencies>
   <profiles>
     <profile>
       <id>run-its</id>
-      <!--<build>
+      <build>
         <plugins>
           <plugin>
 		     <groupId>org.apache.maven.plugins</groupId> 
 		     <artifactId>maven-resources-plugin</artifactId> 
-		     <version>2.4</version> 
+		     <version>2.6</version> 
 			</plugin>
 		</plugins>
-	</build>-->
+	</build>
 	</profile>
 	</profiles> 
 </project>
