@@ -20,6 +20,10 @@ public class ImageTools {
 	public static Calendar getJpegTakenDate(String filePath) throws IOException, ImageProcessingException {
 		File jpegFile = new File(filePath);
 		Metadata metadata = ImageMetadataReader.readMetadata(jpegFile);
+		return getJpegTakenDate(metadata);
+	}
+
+	public static Calendar getJpegTakenDate(Metadata metadata) throws IOException, ImageProcessingException {
 		try {
 			ExifSubIFDDirectory dir = metadata.getDirectory(ExifSubIFDDirectory.class);
 			Calendar cal = Calendar.getInstance();
@@ -33,6 +37,10 @@ public class ImageTools {
 	public static double getJpegLongitude(String filePath) throws IOException, ImageProcessingException {
 		File jpegFile = new File(filePath);
 		Metadata metadata = ImageMetadataReader.readMetadata(jpegFile);
+		return getJpegLongitude(metadata);
+	}
+
+	public static double getJpegLongitude(Metadata metadata) throws IOException, ImageProcessingException {
 		try {
 			GpsDirectory dir = metadata.getDirectory(GpsDirectory.class);			
 			Rational[] longitudeArray = dir.getRationalArray(GpsDirectory.TAG_GPS_LONGITUDE);
@@ -51,6 +59,10 @@ public class ImageTools {
 	public static double getJpegLatitude(String filePath) throws IOException, ImageProcessingException {
 		File jpegFile = new File(filePath);
 		Metadata metadata = ImageMetadataReader.readMetadata(jpegFile);
+		return getJpegLatitude(metadata);
+	}
+
+	public static double getJpegLatitude(Metadata metadata) throws IOException, ImageProcessingException {
 		try {
 			GpsDirectory dir = metadata.getDirectory(GpsDirectory.class);
 			Rational[] latitudeArray = dir.getRationalArray(GpsDirectory.TAG_GPS_LATITUDE);
