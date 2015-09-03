@@ -4,8 +4,10 @@ import com.drew.imaging.ImageMetadataReader;
 import com.drew.imaging.ImageProcessingException;
 import com.drew.lang.Rational;
 import com.drew.metadata.Metadata;
+import com.drew.metadata.MetadataException;
 import com.drew.metadata.exif.ExifSubIFDDirectory;
 import com.drew.metadata.exif.GpsDirectory;
+import com.drew.metadata.jpeg.JpegDirectory;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,6 +34,28 @@ public class ImageTools {
 		} catch (NullPointerException ex) {
 			return null;
 		}
+	}
+
+	public static int getHeight(String filePath) throws ImageProcessingException, IOException, MetadataException {
+		File jpegFile = new File(filePath);
+		Metadata metadata = ImageMetadataReader.readMetadata(jpegFile);
+		return getHeight(metadata);
+	}
+
+	public static int getHeight(Metadata metadata) throws MetadataException {
+		JpegDirectory dir = metadata.getDirectory(JpegDirectory.class);
+		return dir.getImageHeight();
+	}
+
+	public static int getWidth(String filePath) throws ImageProcessingException, IOException, MetadataException {
+		File jpegFile = new File(filePath);
+		Metadata metadata = ImageMetadataReader.readMetadata(jpegFile);
+		return getWidth(metadata);
+	}
+
+	public static int getWidth(Metadata metadata) throws MetadataException {
+		JpegDirectory dir = metadata.getDirectory(JpegDirectory.class);
+		return dir.getImageWidth();
 	}
 
 	public static double getJpegLongitude(String filePath) throws IOException, ImageProcessingException {

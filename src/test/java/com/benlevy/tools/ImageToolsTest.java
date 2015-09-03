@@ -9,6 +9,7 @@ import java.util.Calendar;
 import org.junit.Test;
 
 import com.drew.imaging.ImageProcessingException;
+import com.drew.metadata.MetadataException;
 
 public class ImageToolsTest {
 	static final String IMAGE_DIRECTORY = "src" + File.separator + "test" + File.separator + "resources" + File.separator;
@@ -47,5 +48,13 @@ public class ImageToolsTest {
     	catch (Exception e){
     		assertTrue(e.getClass().equals(NullPointerException.class));
     	}
+    }
+
+    @Test
+    public void testDimensions() throws ImageProcessingException, MetadataException, IOException {
+    	int height = ImageTools.getHeight(IMAGE_DIRECTORY + "img_4304s.jpg");
+    	assertEquals(120, height);
+    	int width = ImageTools.getWidth(IMAGE_DIRECTORY + "img_4304s.jpg");
+    	assertEquals(160, width);
     }
 }
